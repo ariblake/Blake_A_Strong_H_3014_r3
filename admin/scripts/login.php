@@ -43,10 +43,6 @@ function login($username, $password, $ip){
                 )
             );
 
-            
-
-
-
             // $check_new_query = 'SELECT user_isNew FROM tbl_user WHERE user_id = :id';
             // $user_new = $pdo->prepare($check_new_query);
             // $user_new->execute(
@@ -54,10 +50,8 @@ function login($username, $password, $ip){
             //         ':id'=>$id
             //     )
             // );
-            // $results = $pdo->query($check_new_query);
-            // echo $results;
 
-            // if($check_new_query == "1"){
+            // if($user_new == 1){
             //     // first time user is logging in = go to edit user page
             //     //redirect_to('admin_edituser.php');
             //     echo "user is new";

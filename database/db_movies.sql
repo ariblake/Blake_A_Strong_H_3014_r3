@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 06, 2020 at 08:23 PM
+-- Generation Time: Mar 07, 2020 at 11:06 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -1064,16 +1064,19 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `user_email` varchar(250) NOT NULL,
   `user_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `user_ip` varchar(50) NOT NULL DEFAULT 'no',
+  `user_isNew` varchar(1) NOT NULL DEFAULT '1',
+  `user_timeout` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_user`
 --
 
-INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_ip`) VALUES
-(1, 'Ari', 'ariblake', 'password123', 'a_blake69703@fanshaweonline.ca', '2020-02-03 05:14:26', '::1'),
-(2, 'Ariana', 'ari123', '123', '123@123.com', '2020-02-24 21:14:55', '::1');
+INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_ip`, `user_isNew`, `user_timeout`) VALUES
+(1, 'Ari', 'ariblake', '123', 'a_blake69703@fanshaweonline.ca', '2020-02-03 05:14:26', '::1', '0', '2020-03-07 22:19:20'),
+(3, 'Hillary', 'hillary123', '123', 'test@test.com', '2020-03-07 20:29:02', '::1', '1', '2020-03-07 22:19:20'),
+(4, 'test', 'test1', '123', 'test@test.com', '2020-03-07 22:25:05', 'no', '1', '2020-03-07 22:25:05');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

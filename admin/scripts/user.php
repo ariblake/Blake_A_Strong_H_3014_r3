@@ -3,8 +3,8 @@ function createUser($fname, $username, $password, $email){
     $pdo = Database::getInstance()->getConnection();
 
     //TODO: finish the below so that it can run a SQL query to create a new user with provided data
-    $create_user_query = 'INSERT INTO tbl_user(user_fname, user_name, user_pass, user_email, user_ip)';
-    $create_user_query .= ' VALUES (:fname, :username, :password, :email, "no")';
+    $create_user_query = 'INSERT INTO tbl_user(user_fname, user_name, user_pass, user_email, user_ip, user_isNew, user_timeout)';
+    $create_user_query .= ' VALUES (:fname, :username, :password, :email, "no", "1", NOW() + INTERVAL 2 DAY)'; // Use NOW() + INTERVAL 2 DAY to set the user_timeout to two days from now
 
     $create_user_set = $pdo->prepare($create_user_query);
     $create_user_result= $create_user_set->execute(
@@ -15,6 +15,7 @@ function createUser($fname, $username, $password, $email){
             ':email'=>$email,
         )
     );
+
     //TODO: redirect to index.php if create user successfully, otherwise return an error message
     if($create_user_result){
         redirect_to('index.php');

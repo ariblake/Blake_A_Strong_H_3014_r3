@@ -1,9 +1,6 @@
 <?php
 
 function login($username, $password, $ip){
-    // debug
-    // sprintf lets us use placeholders that fill in with the value at the end
-    // $message = sprintf('You are trying to log in with username %s and password %s', $username, $password);
 
     $pdo = Database::getInstance()->getConnection();
     //Check existance
@@ -17,8 +14,6 @@ function login($username, $password, $ip){
 
     if($user_set->fetchColumn()>0){
         //User exists
-        //$message = 'User Exists!';
-
         // check in my user table if there is a row that matches username and password
         $get_user_query = 'SELECT * FROM tbl_user WHERE user_name = :username';
         $get_user_query .= ' AND user_pass = :password';
@@ -47,10 +42,64 @@ function login($username, $password, $ip){
                     ':id'=>$id
                 )
             );
+
+            
+
+
+
+            // $check_new_query = 'SELECT user_isNew FROM tbl_user WHERE user_id = :id';
+            // $user_new = $pdo->prepare($check_new_query);
+            // $user_new->execute(
+            //     array(
+            //         ':id'=>$id
+            //     )
+            // );
+            // $results = $pdo->query($check_new_query);
+            // echo $results;
+
+            // if($check_new_query == "1"){
+            //     // first time user is logging in = go to edit user page
+            //     //redirect_to('admin_edituser.php');
+            //     echo "user is new";
+            //     // set user_isNew to 0 because they are no longer new
+
+            // } else {
+            //     // the user is not new, load dashboard page
+            //     //redirect_to('index.php');
+            //     echo "user is not new";
+            // }
         }
 
         if(isset($id)){
-            redirect_to('index.php');
+            // get current date and time 
+            $currentDate = date("Y-m-d H:i:s");
+
+            if ($currentDate >= ['user_timeout']){
+                $message = 'account has been timed out';
+            } else {
+                redirect_to('index.php');
+            }
+            
+            // $pdo = Database::getInstance()->getConnection();
+            // $check_new_query = 'SELECT user_isNew FROM tbl_user WHERE user_id = :id';
+            // $user_new = $pdo->prepare($check_new_query);
+            // $user_new->execute(
+            //     array(
+            //         ':id'=>$id
+            //     )
+            // );
+
+            // if($isNew == '1'){
+            //     // first time user is logging in = go to edit user page
+            //     //redirect_to('admin_edituser.php');
+            //     echo "user is new";
+            //     // set user_isNew to 0 because they are no longer new
+
+            // } else {
+            //     // the user is not new, load dashboard page
+            //     //redirect_to('index.php');
+            //     echo "user is not new";
+            // }
         }
 
     }else{

@@ -1,9 +1,6 @@
 <?php
     require_once '../load.php';
 
-    // $_UPPERCASE means this is a built in PHP variable
-    // php.net has a manual that explains these variables
-    // $word is a variable made by us
     $ip = $_SERVER['REMOTE_ADDR']; //REMOTE_ADDR uses the IP address from the user
 
     if(isset($_POST['submit'])){
